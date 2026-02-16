@@ -5,5 +5,5 @@
 </script>
 
 <div>
-	<h1 class="text-accent-primary"> Categories page</h1>
+	<h1 class="text-accent-primary">About page</h1>
 </div>
