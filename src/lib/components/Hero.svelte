@@ -2,14 +2,18 @@
 	import { onMount } from "svelte";
 
 	const headlines = [
-		"What are you up to today?",
-		"What's on your nightstand?",
 		"Ready for a new chapter?",
-		"Which world are we visiting today?",
+		"Which world are we visiting next?",
 		"Lost in a good book yet?",
-		"Where will your story go next?",
 		"Found any hidden gems lately?",
-		"What's your current escape?",
+		"What's your next escape?",
+		"Building your dream library?",
+		"What's next on the shopping list?",
+		"Collecting tomorrow's favorites.",
+		"One more book won't hurt, right?",
+		"Curating your future bookshelves.",
+		"Saving space for new adventures.",
+		"Found a new treasure to track?",
 	];
 
 	let randomHeadline = "";
