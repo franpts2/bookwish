@@ -1,5 +1,6 @@
 <script>
 	import BookCardList from "$lib/components/BookCardList.svelte";
+	import Hero from "$lib/components/Hero.svelte";
 
 	const sampleBooks = [
 		{
@@ -51,6 +52,7 @@
 </script>
 
 <div>
+    <Hero />
 	<div class="flex flex-row items-center justify-between">
 		<h1 class="text-2xl text-primary-accent font-bold py-4">Recently Added</h1>
 	</div>
