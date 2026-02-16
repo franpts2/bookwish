@@ -1,34 +1,23 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap');
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap");
 
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+	--font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
 
-	/* Brand Colors */
-	--color-brand-ivory: #f5f2ec;
-	--color-brand-greige: #d9d2c6;
-	--color-brand-stone: #b7a996;
-	--color-brand-walnut: #8c7864;
-	--color-brand-mocha: #4e4034;
-
-	/* Background Colors */
-	--color-bg-primary: #f5f2ec;
-	--color-bg-secondary: #d9d2c6;
-	--color-bg-tertiary: #b7a996;
-
-	/* Text Colors */
-	--color-text-primary: #4e4034;
-	--color-text-secondary: #8c7864;
-	--color-text-inverse: #f5f2ec;
-
-	/* Accent Colors */
-	--color-accent-primary: #8c7864;
-	--color-accent-secondary: #4e4034;
-	--color-accent-muted: #a3b18a;
-	--color-accent-gold: #c29147;
+	--color-primary-accent: #555439;
+	--color-secondary-accent: #9a7844;
+	--color-text-special: #9f9c6c;
+	--color-text-primary: #1e1e1e;
+	--color-bg-primary: #f9f8eb;
+	--color-bg-secondary: #d6cca8;
 }
 
 body {
+	font-family: var(--font-sans);
 	@apply bg-bg-primary text-text-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primary-accent);
 }
