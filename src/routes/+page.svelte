@@ -1,7 +1,7 @@
 <script>
 	import BookCardList from "$lib/components/BookCardList.svelte";
 
-	const sampleProducts = [
+	const sampleBooks = [
 		{
 			image: "/path/to/image.jpg",
 			author: "Author Name",
@@ -54,5 +54,5 @@
 	<div class="flex flex-row items-center justify-between">
 		<h1 class="text-2xl text-primary-accent font-bold py-4">Recently Added</h1>
 	</div>
-	<BookCardList products={sampleProducts} />
+	<BookCardList books={sampleBooks} />
 </div>

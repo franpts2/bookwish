@@ -2,7 +2,7 @@
 	import BookCard from "./BookCard.svelte";
 	import { fade } from "svelte/transition";
 
-	let { products = [] } = $props();
+	let { books = [] } = $props();
 
 	let scrollContainer: HTMLDivElement;
 	let showRightFade = $state(true);
@@ -26,12 +26,12 @@
 		onscroll={handleScroll}
 	>
 		<div class="flex flex-row gap-6">
-			{#each products as product}
+			{#each books as book}
 				<div class="shrink-0">
 					<BookCard
-						image={product.image}
-						author={product.author}
-						name={product.name}
+						image={book.image}
+						author={book.author}
+						name={book.name}
 					/>
 				</div>
 			{/each}
