@@ -10,9 +10,9 @@
 
 	const variantClasses = {
 		secondary:
-			"bg-bg-primary text-text-primary border-2 border-brand-greige shadow-sm hover:bg-bg-secondary hover:border-brand-stone hover:shadow-md active:bg-brand-greige active:translate-y-px",
+			"bg-color-bg-primary text-white border-2 border-[var(--color-bg-secondary)] shadow-sm hover:bg-[var(--color-bg-secondary)] hover:border-[var(--color-primary-accent)] hover:shadow-md active:bg-[var(--color-bg-secondary)] active:translate-y-px",
 		primary:
-			"bg-gradient-to-br from-accent-gold to-accent-primary text-text-inverse shadow-lg shadow-accent-primary/30 hover:from-accent-gold/90 hover:to-accent-primary/90 hover:shadow-xl hover:shadow-accent-primary/40 hover:-translate-y-px active:from-accent-primary active:to-accent-secondary active:translate-y-0",
+			"bg-gradient-to-br from-[var(--color-secondary-accent)] to-[var(--color-primary-accent)] text-white shadow-lg shadow-[var(--color-primary-accent)]/30 hover:from-[var(--color-secondary-accent)]/90 hover:to-[var(--color-primary-accent)]/90 hover:shadow-xl hover:shadow-[var(--color-primary-accent)]/40 hover:-translate-y-px active:from-[var(--color-primary-accent)] active:to-[var(--color-secondary-accent)] active:translate-y-0",
 	};
 </script>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	let {
 		image = "",
-		brand = "",
+		author = "",
 		name = "",
 	} = $props();
 </script>
@@ -11,17 +11,15 @@
 >
 	<!-- Product Image -->
 	<div
-		class="aspect-square rounded-lg bg-bg-tertiary overflow-hidden relative group"
+		class="aspect-square rounded-lg bg-bg-secondary overflow-hidden relative group"
 	>
 		<img src={image} alt={name} class="w-full h-full object-cover" />
 	</div>
 
 	<!-- Product Info -->
 	<div class="p-4 space-y-1">
-		<!-- Brand -->
-		<p class="text-sm text-text-secondary">{brand}</p>
+		<p class="text-sm text-text-secondary">{author}</p>
 
-		<!-- Product Name -->
 		<h3 class="font-medium text-text-primary">{name}</h3>
 	</div>
 </div>
