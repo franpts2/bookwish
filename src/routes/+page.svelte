@@ -1,5 +1,4 @@
 <script>
-	import Button from "$lib/components/Button.svelte";
 	import BookCardList from "$lib/components/BookCardList.svelte";
 
 	const sampleProducts = [
