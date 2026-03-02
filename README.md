@@ -1,6 +1,6 @@
-# Wish All
+# bookwish
 
-Platform where you can keep track of all your wishlists!
+Platform where you can keep track of all the books you want to read!
 
 🚧 **Work in Progress** - This project is currently under development.
 
