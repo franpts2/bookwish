@@ -24,17 +24,23 @@
 </script>
 
 <section
-	class="relative flex min-h-90 w-full items-center overflow-hidden rounded-b-[5rem] bg-bg-secondary p-12 md:p-20 mb-16"
+	class="relative flex min-h-60 sm:min-h-80 md:min-h-90 w-full items-center overflow-hidden rounded-b-[2.5rem] sm:rounded-b-[4rem] md:rounded-b-[5rem] bg-bg-secondary p-3 sm:p-6 md:p-12 mb-8 sm:mb-12 md:mb-16"
 >
-	<div class="relative z-10 flex flex-col gap-3">
-		<p class="text-4xl font-medium text-primary-accent/80">Hello, reader!</p>
-		<h1 class="text-5xl font-bold tracking-tight text-primary-accent">
+	<div class="relative z-10 flex flex-col gap-2 sm:gap-3">
+		<p
+			class="text-2xl sm:text-3xl md:text-4xl font-medium text-primary-accent/80"
+		>
+			Hello, reader!
+		</p>
+		<h1
+			class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary-accent"
+		>
 			{randomHeadline}
 		</h1>
 	</div>
 
 	<div
-		class="absolute -right-5 -bottom-88 text-primary-accent/40 md:-bottom-112"
+		class="absolute -right-8 -bottom-40 sm:-right-5 sm:-bottom-72 md:-bottom-112 text-primary-accent/40"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +48,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="0.3"
 			stroke="currentColor"
-			class="h-160 w-160 md:h-200 md:w-200"
+			class="h-72 w-72 sm:h-160 sm:w-160 md:h-200 md:w-200"
 		>
 			<path
 				stroke-linecap="round"

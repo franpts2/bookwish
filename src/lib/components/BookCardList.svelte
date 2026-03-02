@@ -21,18 +21,14 @@
 
 <div class="relative">
 	<div
-		class="overflow-x-auto scrollbar-hide py-4"
+		class="overflow-x-auto scrollbar-hide py-3 sm:py-4"
 		bind:this={scrollContainer}
 		onscroll={handleScroll}
 	>
-		<div class="flex flex-row gap-6">
+		<div class="flex flex-row gap-3 sm:gap-4 md:gap-6">
 			{#each books as book}
 				<div class="shrink-0">
-					<BookCard
-						image={book.image}
-						author={book.author}
-						name={book.name}
-					/>
+					<BookCard image={book.image} author={book.author} name={book.name} />
 				</div>
 			{/each}
 		</div>

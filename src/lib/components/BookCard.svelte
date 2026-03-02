@@ -1,13 +1,9 @@
 <script lang="ts">
-	let {
-		image = "",
-		author = "",
-		name = "",
-	} = $props();
+	let { image = "", author = "", name = "" } = $props();
 </script>
 
 <div
-	class="w-60 overflow-hidden rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+	class="w-40 sm:w-52 md:w-60 overflow-hidden rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
 >
 	<!-- Product Image -->
 	<div
@@ -17,9 +13,9 @@
 	</div>
 
 	<!-- Product Info -->
-	<div class="p-4 space-y-1">
-		<p class="text-sm text-text-secondary">{author}</p>
+	<div class="p-2 sm:p-3 md:p-4 space-y-1">
+		<p class="text-xs sm:text-sm text-text-secondary">{author}</p>
 
-		<h3 class="font-medium text-text-primary">{name}</h3>
+		<h3 class="text-sm sm:text-base font-medium text-text-primary">{name}</h3>
 	</div>
 </div>
