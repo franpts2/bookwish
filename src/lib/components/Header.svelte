@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
+	import AddBookModal from "./AddBookModal.svelte";
+
+	let modalOpen = false;
 
 	const navItems = [
 		{ name: "All Books", path: "/all" },
@@ -14,7 +17,10 @@
 <header class="bg-bg-primary px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8">
 	<div class="flex flex-row justify-between items-center">
 		<div class="flex items-center gap-2 sm:gap-4 md:gap-8">
-			<a href="/" class="text-primary-accent flex flex-row gap-1 sm:gap-2 items-center justify-center">
+			<a
+				href="/"
+				class="text-primary-accent flex flex-row gap-1 sm:gap-2 items-center justify-center"
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -29,7 +35,7 @@
 					/></svg
 				>
 				<h1 class="text-xl sm:text-2xl md:text-3xl font-bold">bookwish</h1>
-            </a>
+			</a>
 
 			<nav class="hidden md:flex gap-2">
 				{#each navItems as item}
@@ -42,6 +48,12 @@
 				{/each}
 			</nav>
 		</div>
-		<Button iconPosition="right" icon={addIcon}>Add Book</Button>
+		<Button
+			iconPosition="right"
+			icon={addIcon}
+			on:click={() => (modalOpen = true)}>Add Book</Button
+		>
 	</div>
 </header>
+
+<AddBookModal bind:open={modalOpen} />
