@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Dialog, Label, Separator } from "bits-ui";
+	import * as Dialog from "$lib/components/ui/dialog";
+	import * as Label from "$lib/components/ui/label";
+	import * as Separator from "$lib/components/ui/separator";
 
 	export let open = false;
 </script>
@@ -22,7 +24,9 @@
 				Add a new book to your wishlist. Fill in the details below.
 			</Dialog.Description>
 			<div class="flex flex-col items-start gap-1 pb-11 pt-7">
-				<Label.Root for="bookTitle" class="text-sm font-medium">Book Title</Label.Root>
+				<Label.Label for="bookTitle" class="text-sm font-medium"
+					>Book Title</Label.Label
+				>
 				<div class="relative w-full">
 					<input
 						id="bookTitle"

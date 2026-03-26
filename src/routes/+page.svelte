@@ -55,7 +55,7 @@
 	<Hero />
 	<div class="flex flex-row items-center justify-between">
 		<h1
-			class="text-xl sm:text-2xl md:text-3xl text-primary-accent font-bold py-3 sm:py-4"
+			class="text-xl sm:text-2xl md:text-3xl text-primary font-bold py-3 sm:py-4"
 		>
 			Recently Added
 		</h1>

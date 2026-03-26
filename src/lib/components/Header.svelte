@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from "./Button.svelte";
+	import { Button } from "$lib/components/ui/button";
 	import AddBookModal from "./AddBookModal.svelte";
 
 	let modalOpen = false;
@@ -9,17 +9,14 @@
 		{ name: "Lists", path: "/lists" },
 		{ name: "About", path: "/about" },
 	];
-
-	const addIcon =
-		'<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>';
 </script>
 
-<header class="bg-bg-primary px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8">
+<header class="bg-background px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8">
 	<div class="flex flex-row justify-between items-center">
 		<div class="flex items-center gap-2 sm:gap-4 md:gap-8">
 			<a
 				href="/"
-				class="text-primary-accent flex flex-row gap-1 sm:gap-2 items-center justify-center"
+				class="text-primary flex flex-row gap-1 sm:gap-2 items-center justify-center"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -41,18 +38,29 @@
 				{#each navItems as item}
 					<a
 						href={item.path}
-						class="px-3 md:px-4 py-2 rounded-lg text-sm md:text-base text-text-primary hover:bg-bg-secondary hover:text-text-primary transition-colors"
+						class="px-3 md:px-4 py-2 rounded-lg text-sm md:text-base text-foreground hover:bg-muted hover:text-foreground transition-colors"
 					>
 						{item.name}
 					</a>
 				{/each}
 			</nav>
 		</div>
-		<Button
-			iconPosition="right"
-			icon={addIcon}
-			on:click={() => (modalOpen = true)}>Add Book</Button
-		>
+		<Button onclick={() => (modalOpen = true)}>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="size-5"
+				><path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+				/></svg
+			>
+			Add Book
+		</Button>
 	</div>
 </header>
 

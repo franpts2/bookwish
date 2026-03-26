@@ -24,23 +24,21 @@
 </script>
 
 <section
-	class="relative flex min-h-60 sm:min-h-80 md:min-h-90 w-full items-center overflow-hidden rounded-b-[2.5rem] sm:rounded-b-[4rem] md:rounded-b-[5rem] bg-bg-secondary p-3 sm:p-6 md:p-12 mb-8 sm:mb-12 md:mb-16"
+	class="relative flex min-h-60 sm:min-h-80 md:min-h-90 w-full items-center overflow-hidden rounded-b-[2.5rem] sm:rounded-b-[4rem] md:rounded-b-[5rem] bg-muted p-3 sm:p-6 md:p-12 mb-8 sm:mb-12 md:mb-16"
 >
 	<div class="relative z-10 flex flex-col gap-2 sm:gap-3">
-		<p
-			class="text-2xl sm:text-3xl md:text-4xl font-medium text-primary-accent/80"
-		>
+		<p class="text-2xl sm:text-3xl md:text-4xl font-medium text-primary/80">
 			Hello, reader!
 		</p>
 		<h1
-			class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary-accent"
+			class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary"
 		>
 			{randomHeadline}
 		</h1>
 	</div>
 
 	<div
-		class="absolute -right-8 -bottom-40 sm:-right-5 sm:-bottom-72 md:-bottom-112 text-primary-accent/40"
+		class="absolute -right-8 -bottom-40 sm:-right-5 sm:-bottom-72 md:-bottom-112 text-primary/40"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
