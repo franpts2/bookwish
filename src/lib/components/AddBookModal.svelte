@@ -22,9 +22,7 @@
 				Add a new book to your wishlist. Fill in the details below.
 			</Dialog.Description>
 			<div class="flex flex-col items-start gap-1 pb-11 pt-7">
-				<Label.Root for="bookTitle" class="text-sm font-medium"
-					>Book Title</Label.Root
-				>
+				<Label.Root for="bookTitle" class="text-sm font-medium">Book Title</Label.Root>
 				<div class="relative w-full">
 					<input
 						id="bookTitle"
