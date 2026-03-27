@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
 	import AddBookModal from "./AddBookModal.svelte";
+	import { BookIcon, PlusIcon } from "phosphor-svelte";
 
 	let modalOpen = false;
 
@@ -18,19 +19,7 @@
 				href="/"
 				class="text-primary flex flex-row gap-1 sm:gap-2 items-center justify-center"
 			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="2.5"
-					stroke="currentColor"
-					class="size-6 sm:size-7"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-					/></svg
-				>
+				<BookIcon size={28} weight="fill" className="sm:size-8" />
 				<h1 class="text-xl sm:text-2xl md:text-3xl font-bold">bookwish</h1>
 			</a>
 
@@ -46,19 +35,7 @@
 			</nav>
 		</div>
 		<Button onclick={() => (modalOpen = true)}>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke-width="1.5"
-				stroke="currentColor"
-				class="size-5"
-				><path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-				/></svg
-			>
+			<PlusIcon size={20} weight="bold" />
 			Add Book
 		</Button>
 	</div>

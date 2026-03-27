@@ -2,6 +2,7 @@
 	import * as Dialog from "$lib/components/ui/dialog";
 	import * as Label from "$lib/components/ui/label";
 	import * as Separator from "$lib/components/ui/separator";
+	import { BookIcon, XIcon } from "phosphor-svelte";
 
 	export let open = false;
 </script>
@@ -34,20 +35,9 @@
 						placeholder="Enter book title"
 						name="title"
 					/>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="text-dark/30 absolute right-4 top-3.5 size-5.5"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
-						/>
-					</svg>
+					<div class="text-muted-foreground absolute right-4 top-3.5">
+						<BookIcon size={20} weight="light" />
+					</div>
 				</div>
 			</div>
 			<div class="flex w-full justify-end">
@@ -58,25 +48,10 @@
 				</Dialog.Close>
 			</div>
 			<Dialog.Close
-				class="focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden absolute right-5 top-5 rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]"
+				class="focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden absolute right-5 top-5 rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] p-1"
 			>
-				<div>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="size-6 text-foreground"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M6 18 18 6M6 6l12 12"
-						/>
-					</svg>
-					<span class="sr-only">Close</span>
-				</div>
+				<XIcon size={24} />
+				<span class="sr-only">Close</span>
 			</Dialog.Close>
 		</Dialog.Content>
 	</Dialog.Portal>
