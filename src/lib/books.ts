@@ -10,7 +10,7 @@ export interface Book {
 }
 
 export async function searchBooks(query: string) {
-	const apiKey = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
+	const apiKey = import.meta.env.GOOGLE_BOOKS_API_KEY;
 	const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${apiKey}`;
 
 	const response = await fetch(url);
