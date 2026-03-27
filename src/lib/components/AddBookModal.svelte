@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Dialog from "$lib/components/ui/dialog";
 	import * as Label from "$lib/components/ui/label";
-	import * as Separator from "$lib/components/ui/separator";
-	import { BookIcon, XIcon } from "phosphor-svelte";
+	import { Input } from "$lib/components/ui/input";
+	import { MagnifyingGlassIcon } from "phosphor-svelte";
 
 	export let open = false;
 </script>
@@ -20,23 +20,16 @@
 			>
 				Add New Book
 			</Dialog.Title>
-			<Separator.Root class="bg-muted -mx-5 mb-6 mt-5 block h-px" />
-			<Dialog.Description class="text-foreground-alt text-sm">
-				Add a new book to your wishlist. Fill in the details below.
-			</Dialog.Description>
-			<div class="flex flex-col items-start gap-1 pb-11 pt-7">
+			<div class="flex flex-col items-start gap-1">
 				<Label.Label for="bookTitle" class="text-sm font-medium"
 					>Book Title</Label.Label
 				>
 				<div class="relative w-full">
-					<input
-						id="bookTitle"
-						class="h-input rounded-card-sm border-border-input bg-background placeholder:text-foreground-alt/50 hover:border-dark-40 focus:ring-foreground focus:ring-offset-background focus:outline-hidden inline-flex w-full items-center border px-4 text-base focus:ring-2 focus:ring-offset-2 sm:text-sm"
-						placeholder="Enter book title"
-						name="title"
-					/>
-					<div class="text-muted-foreground absolute right-4 top-3.5">
-						<BookIcon size={20} weight="light" />
+					<Input id="bookTitle" placeholder="Enter book title" name="title" />
+					<div
+						class="text-muted-foreground absolute right-3 bottom-2 flex items-center justify-center pointer-events-none"
+					>
+						<MagnifyingGlassIcon size={20} weight="light" />
 					</div>
 				</div>
 			</div>
@@ -47,12 +40,6 @@
 					Add Book
 				</Dialog.Close>
 			</div>
-			<Dialog.Close
-				class="focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden absolute right-5 top-5 rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] p-1"
-			>
-				<XIcon size={24} />
-				<span class="sr-only">Close</span>
-			</Dialog.Close>
 		</Dialog.Content>
 	</Dialog.Portal>
 </Dialog.Root>
