@@ -1,5 +1,5 @@
 <script lang="ts">
-	import BookCard from "./BookCard.svelte";
+	import BookCard from "./book-card.svelte";
 	import { fade } from "svelte/transition";
 
 	let { books = [] } = $props();
