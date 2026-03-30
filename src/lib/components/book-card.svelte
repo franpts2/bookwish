@@ -1,19 +1,15 @@
 <script lang="ts">
+	import ThreeDBook from "./3d-book.svelte";
+
 	let { image = "", author = "", name = "" } = $props();
 </script>
 
-<div
-	class="w-40 sm:w-52 md:w-60 overflow-hidden rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
->
-	<!-- Product Image -->
-	<div class="aspect-square rounded-lg bg-muted overflow-hidden relative group">
-		<img src={image} alt={name} class="w-full h-full object-cover" />
-	</div>
+<div class="cursor-pointer flex flex-col items-center px-5 py-2">
+	<ThreeDBook {image} {name} />
 
 	<!-- Product Info -->
-	<div class="p-2 sm:p-3 md:p-4 space-y-1">
-		<p class="text-xs sm:text-sm text-muted-foreground">{author}</p>
-
-		<h3 class="text-sm sm:text-base font-medium text-foreground">{name}</h3>
+	<div class="space-y-1 text-center">
+		<h3 class="text-sm sm:text-base font-medium text-foreground line-clamp-2">{name}</h3>
+		<p class="text-xs sm:text-sm text-muted-foreground line-clamp-1">{author}</p>
 	</div>
 </div>
