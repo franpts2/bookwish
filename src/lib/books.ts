@@ -1,12 +1,8 @@
 export interface Book {
-	volumeInfo: {
-		title: string;
-		authors?: string[];
-		imageLinks?: {
-			thumbnail?: string;
-		};
-		infoLink: string;
-	};
+	name: string;
+	author: string;
+	image: string;
+	description?: string;
 }
 
 export async function searchBooks(query: string) {

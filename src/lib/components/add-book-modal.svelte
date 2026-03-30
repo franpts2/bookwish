@@ -2,6 +2,8 @@
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Input } from "$lib/components/ui/input";
 	import { MagnifyingGlassIcon, CaretUp, CaretDown } from "phosphor-svelte";
+	import { books } from "$lib/stores";
+	import type { Book } from "$lib/books";
 
 	export let open = false;
 
@@ -86,8 +88,17 @@
 	}
 
 	function selectBook() {
-		// TODO: Add the selected book to the list
-		console.log("Selected:", filtered[selectedIndex]);
+		if (filtered[selectedIndex]) {
+			const book = filtered[selectedIndex];
+			books.addBook({
+				name: book.title,
+				author: book.author,
+				image: book.thumbnail || "",
+				description: book.description,
+			});
+			searchQuery = "";
+			open = false;
+		}
 	}
 </script>
 
