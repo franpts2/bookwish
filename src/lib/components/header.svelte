@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
-	import AddBookModal from "./AddBookModal.svelte";
+	import AddBookModal from "./add-book-modal.svelte";
 	import { BookIcon, PlusIcon } from "phosphor-svelte";
 
 	let modalOpen = false;

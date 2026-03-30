@@ -1,6 +1,6 @@
 <script>
-	import BookCardList from "$lib/components/BookCardList.svelte";
-	import Hero from "$lib/components/Hero.svelte";
+	import BookCardList from "$lib/components/book-card-list.svelte";
+	import Hero from "$lib/components/hero.svelte";
 
 	const sampleBooks = [
 		{
