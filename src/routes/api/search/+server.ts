@@ -22,8 +22,6 @@ export const GET: RequestHandler = async ({ url }) => {
 	try {
 		const searchUrl = `${GOOGLE_BOOKS_API}?q=${encodeURIComponent(query)}&maxResults=10&key=${apiKey}`;
 
-		console.log("Fetching from:", searchUrl.replace(apiKey, "***"));
-
 		const response = await fetch(searchUrl);
 
 		if (!response.ok) {
@@ -36,7 +34,6 @@ export const GET: RequestHandler = async ({ url }) => {
 		}
 
 		const data = await response.json();
-		console.log("API returned items:", data.items?.length || 0);
 		return json(data);
 	} catch (error) {
 		console.error("Error in search endpoint:", error);
