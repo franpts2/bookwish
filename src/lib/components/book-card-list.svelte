@@ -1,6 +1,8 @@
 <script lang="ts">
 	import BookCard from "./book-card.svelte";
 	import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
+	import * as Empty from "$lib/components/ui/empty/index.js";
+	import { BookOpenIcon } from "phosphor-svelte";
 	import { fade } from "svelte/transition";
 
 	let { books = [], isHydrated = false } = $props();
@@ -68,20 +70,9 @@
 		onkeydown={handleKeyDown}
 	>
 		<div class="flex flex-row gap-3 sm:gap-4 md:gap-6">
-			{#if isHydrated && books.length > 0}
-				{#each books as book, index}
-					<div class="shrink-0" transition:fade={{ duration: 200 }}>
-						<BookCard
-							image={book.image}
-							author={book.author}
-							name={book.name}
-							{index}
-						/>
-					</div>
-				{/each}
-			{:else}
+			{#if !isHydrated}
 				<!-- Skeleton loaders -->
-				{#each Array(4) as _, i}
+				{#each Array(7) as _, i}
 					<div class="shrink-0">
 						<div class="cursor-pointer flex flex-col items-center px-5 py-2">
 							<div class="mb-4">
@@ -94,6 +85,30 @@
 						</div>
 					</div>
 				{/each}
+			{:else if books.length > 0}
+				{#each books as book, index}
+					<div class="shrink-0" transition:fade={{ duration: 200 }}>
+						<BookCard
+							image={book.image}
+							author={book.author}
+							name={book.name}
+							{index}
+						/>
+					</div>
+				{/each}
+			{:else}
+				<!-- Empty state -->
+				<Empty.Root class="w-full cursor-default">
+					<Empty.Media variant="icon">
+						<BookOpenIcon size={48} class="text-muted-foreground" />
+					</Empty.Media>
+					<Empty.Content>
+						<Empty.Title>No books yet</Empty.Title>
+						<Empty.Description>
+							Start adding books to your collection
+						</Empty.Description>
+					</Empty.Content>
+				</Empty.Root>
 			{/if}
 		</div>
 	</button>
