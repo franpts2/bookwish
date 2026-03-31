@@ -28,7 +28,8 @@
 </script>
 
 <section
-	class="relative flex min-h-60 sm:min-h-80 md:min-h-90 w-full items-center overflow-hidden rounded-b-[2.5rem] sm:rounded-b-[4rem] md:rounded-b-[5rem] bg-muted p-3 sm:p-6 md:p-12 mb-8 sm:mb-12 md:mb-16"
+	class="relative flex min-h-60 sm:min-h-80 md:min-h-90 w-full items-center overflow-hidden rounded-b-[2.5rem] sm:rounded-b-[4rem] md:rounded-b-[5rem] p-3 sm:p-6 md:p-12 mb-8 sm:mb-12 md:mb-16"
+	style="background-color: color-mix(in srgb, var(--secondary) 15%, transparent);"
 >
 	<div class="relative z-10 flex flex-col gap-2 sm:gap-3">
 		<p class="text-2xl sm:text-3xl md:text-4xl font-medium text-primary/80">
