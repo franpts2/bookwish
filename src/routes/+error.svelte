@@ -20,8 +20,7 @@
 			</Empty.Title>
 			<Empty.Description>
 				{#if $page.status === 404}
-					The page you're looking for seems to have gone missing. It's like a
-					book that's been checked out!
+					The page you're looking for seems to have gone missing. It must be lost in the bookcase!
 				{:else}
 					Something went wrong on our end. Please try again later.
 				{/if}
