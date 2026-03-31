@@ -2,7 +2,7 @@
 	import "../index.css";
 	import favicon from "$lib/assets/favicon.svg";
 	import Header from "$lib/components/header.svelte";
-	import { themeStore } from "$lib/themeStore";
+	import { themeStore } from "$lib/theme/themeStore";
 	import { onMount } from "svelte";
 
 	let { children } = $props();
