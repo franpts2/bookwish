@@ -5,7 +5,7 @@
 </script>
 
 <a href={`/book/${index}`} class="cursor-pointer flex flex-col items-center px-5 py-2 w-48">
-	<ThreeDBook {image} {name} />
+	<ThreeDBook {image} {name} hoverEffect />
 
 	<!-- Product Info -->
 	<div class="space-y-1 text-center">

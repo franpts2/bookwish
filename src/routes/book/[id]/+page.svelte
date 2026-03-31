@@ -20,8 +20,8 @@
 		{#if selectedBook}
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 				<!-- Book Cover -->
-				<div class="flex justify-center lg:justify-start">
-					<ThreeDBook image={selectedBook.image} name={selectedBook.name} />
+				<div class="flex justify-center">
+					<ThreeDBook image={selectedBook.image} name={selectedBook.name} large />
 				</div>
 
 				<!-- Book Details -->
