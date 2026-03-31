@@ -115,14 +115,14 @@
 	{#if showLeftFade}
 		<div
 			transition:fade={{ duration: 300 }}
-			class="absolute left-0 top-0 bottom-0 w-24 bg-linear-to-r from-bg-primary via-bg-primary/30 to-transparent pointer-events-none"
+			class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background via-background/30 to-transparent pointer-events-none"
 		></div>
 	{/if}
 
 	{#if showRightFade}
 		<div
 			transition:fade={{ duration: 300 }}
-			class="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-bg-primary via-bg-primary/30 to-transparent pointer-events-none"
+			class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background via-background/30 to-transparent pointer-events-none"
 		></div>
 	{/if}
 </div>
