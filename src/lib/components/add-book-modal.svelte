@@ -5,7 +5,7 @@
 	import { books } from "$lib/stores";
 	import type { SearchResult } from "$lib/books";
 	import SearchResultItem from "$lib/components/search-result-item.svelte";
-	import Badge from "$lib/components/ui/badge/badge.svelte";
+	import { Kbd } from "$lib/components/ui/kbd";
 
 	export let open = false;
 
@@ -205,16 +205,16 @@
 			>
 				<div class="flex flex-row gap-4">
 					<div class="flex gap-1 items-center">
-						<Badge variant="outline">Enter</Badge>
+					<Kbd>Enter</Kbd>
 						<span>Select</span>
 					</div>
 					<div class="flex gap-1 items-center">
-						<Badge variant="outline">↑ ↓</Badge>
+					<Kbd>↑ ↓</Kbd>
 						<span>Move</span>
 					</div>
 				</div>
 				<div class="flex gap-1 items-center">
-					<Badge variant="outline">Esc</Badge>
+				<Kbd>Esc</Kbd>
 					<span>Exit</span>
 				</div>
 			</div>
