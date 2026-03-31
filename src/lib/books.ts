@@ -1,8 +1,17 @@
+export interface SearchResult {
+  id: string;
+  title: string;
+  author: string;
+  year: number | null;
+  description?: string;
+  thumbnail?: string;
+}
+
 export interface Book {
-	name: string;
-	author: string;
-	image: string;
-	description?: string;
+  name: string;
+  author: string;
+  image: string;
+  description?: string;
 }
 
 export async function searchBooks(query: string) {

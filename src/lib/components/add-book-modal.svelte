@@ -1,24 +1,17 @@
 <script lang="ts">
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Input } from "$lib/components/ui/input";
-	import { MagnifyingGlassIcon, CaretUp, CaretDown } from "phosphor-svelte";
+	import { MagnifyingGlassIcon } from "phosphor-svelte";
 	import { books } from "$lib/stores";
-	import type { Book } from "$lib/books";
+	import type { SearchResult } from "$lib/books";
+	import SearchResultItem from "$lib/components/search-result-item.svelte";
 
 	export let open = false;
 
-	interface Book {
-		id: string;
-		title: string;
-		author: string;
-		year: number | null;
-		description?: string;
-		thumbnail?: string;
-	}
 
 	let searchQuery = "";
 	let selectedIndex = 0;
-	let filtered: Book[] = [];
+	let filtered: SearchResult[] = [];
 	let isLoading = false;
 	let error: string | null = null;
 	let searchTimeout: ReturnType<typeof setTimeout>;
@@ -151,27 +144,12 @@
 				{:else if filtered.length > 0}
 					<div class="space-y-0">
 						{#each filtered as book, index (book.id)}
-							<button
-								on:click={() => {
-									selectedIndex = index;
-									selectBook();
-								}}
-								class={`w-full px-4 py-3 text-left border-b last:border-b-0 transition-colors ${
-									selectedIndex === index
-										? "bg-primary/20 hover:bg-primary/30"
-										: "hover:bg-muted"
-								}`}
-							>
-								<div class="flex items-start justify-between">
-									<div class="flex-1">
-										<p class="font-medium text-sm">{book.title}</p>
-										<p class="text-xs text-muted-foreground">{book.author}</p>
-									</div>
-									<p class="text-xs text-muted-foreground ml-2">
-										{book.year || "N/A"}
-									</p>
-								</div>
-							</button>
+							<SearchResultItem 
+								{book}
+								{index}
+								{selectedIndex}
+								onSelect={selectBook}
+							/>
 						{/each}
 					</div>
 				{:else if searchQuery}
