@@ -86,7 +86,7 @@
 					</div>
 				{/each}
 			{:else if books.length > 0}
-				{#each books as book, index}
+				{#each books as book, _}
 					<div class="shrink-0" transition:fade={{ duration: 200 }}>
 						<BookCard
 							image={book.image}

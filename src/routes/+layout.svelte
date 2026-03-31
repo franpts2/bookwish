@@ -18,7 +18,7 @@
 
 <div class="min-h-screen flex flex-col">
 	<Header />
-	<main class="flex-1 p-8">
+	<main class="flex-1 p-8 mt-16 sm:mt-20 md:mt-24">
 		{@render children()}
 	</main>
 </div>

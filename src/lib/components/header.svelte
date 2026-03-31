@@ -3,17 +3,28 @@
 	import AddBookModal from "./add-book-modal.svelte";
 	import SettingsMenu from "./settings-menu.svelte";
 	import { BookIcon, PlusIcon } from "phosphor-svelte";
+	import { onMount } from "svelte";
 
-	let modalOpen = false;
+	let modalOpen = $state(false);
+	let hasScrolled = $state(false);
 
 	const navItems = [
 		{ name: "All Books", path: "/all" },
 		{ name: "Lists", path: "/lists" },
 		{ name: "About", path: "/about" },
 	];
+
+	onMount(() => {
+		const handleScroll = () => {
+			hasScrolled = window.scrollY > 0;
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	});
 </script>
 
-<header class="bg-background px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8">
+<header class="fixed top-0 left-0 right-0 z-50 bg-background p-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 transition-all {hasScrolled ? 'border-b border-border' : ''}">
 	<div class="flex flex-row justify-between items-center">
 		<div class="flex items-center gap-2 sm:gap-4 md:gap-8">
 			<a
