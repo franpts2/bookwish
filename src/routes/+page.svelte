@@ -1,7 +1,15 @@
 <script lang="ts">
 	import BookCardList from "$lib/components/book-card-list.svelte";
 	import Hero from "$lib/components/hero.svelte";
-	import { books } from "$lib/stores";
+	import { books, hydrateBooks } from "$lib/stores";
+	import { onMount } from "svelte";
+
+	let isHydrated = $state(false);
+
+	onMount(() => {
+		hydrateBooks();
+		isHydrated = true;
+	});
 </script>
 
 <div class="px-2 sm:px-3 md:px-4">
@@ -13,5 +21,5 @@
 			Recently Added
 		</h1>
 	</div>
-	<BookCardList books={$books} />
+	<BookCardList books={[...$books].reverse()} {isHydrated} />
 </div>

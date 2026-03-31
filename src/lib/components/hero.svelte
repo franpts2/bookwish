@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { BookOpenIcon } from "phosphor-svelte";
+	import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
 
 	const headlines = [
 		"Ready for a new chapter?",
@@ -18,9 +19,11 @@
 	];
 
 	let randomHeadline = "";
+	let isLoaded = $state(false);
 
 	onMount(() => {
 		randomHeadline = headlines[Math.floor(Math.random() * headlines.length)];
+		isLoaded = true;
 	});
 </script>
 
@@ -31,11 +34,15 @@
 		<p class="text-2xl sm:text-3xl md:text-4xl font-medium text-primary/80">
 			Hello, reader!
 		</p>
-		<h1
-			class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary"
-		>
-			{randomHeadline}
-		</h1>
+		{#if isLoaded}
+			<h1
+				class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary min-h-10 sm:min-h-12 md:min-h-14"
+			>
+				{randomHeadline}
+			</h1>
+		{:else}
+			<Skeleton class="h-10 sm:h-12 md:h-14 w-96 max-w-full rounded" />
+		{/if}
 	</div>
 
 	<div
