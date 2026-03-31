@@ -1,5 +1,6 @@
 <script lang="ts">
 	import BookCard from "./book-card.svelte";
+	import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
 	import { fade } from "svelte/transition";
 
 	let { books = [], isHydrated = false } = $props();
@@ -42,10 +43,12 @@
 				{#each Array(4) as _, i}
 					<div class="shrink-0">
 						<div class="cursor-pointer flex flex-col items-center px-5 py-2">
-							<div class="mb-4 w-40 h-60 bg-muted rounded-lg animate-pulse"></div>
+							<div class="mb-4">
+								<Skeleton class="w-40 h-60" />
+							</div>
 							<div class="space-y-1 text-center">
-								<div class="h-4 bg-muted rounded animate-pulse w-32"></div>
-								<div class="h-3 bg-muted rounded animate-pulse w-24 mx-auto mt-1"></div>
+								<Skeleton class="h-4 w-32" />
+								<Skeleton class="h-3 w-24 mx-auto mt-1" />
 							</div>
 						</div>
 					</div>
