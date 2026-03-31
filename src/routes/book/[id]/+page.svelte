@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { books } from "$lib/stores";
-	import ThreeDBook from "$lib/components/3d-book.svelte";
 	import { goto } from "$app/navigation";
-	import Button from "$lib/components/ui/button/button.svelte";
+	import ThreeDBook from "$lib/components/3d-book.svelte";
+	import DeleteBookDialog from "$lib/components/delete-book-dialog.svelte";
 
 	let selectedBook = $derived.by(() => {
 		if (!$page.params.id) return undefined;
@@ -35,9 +35,7 @@
 						name={selectedBook.name}
 						large
 					/>
-					<Button variant="destructive" onclick={handleDeleteBook}>
-						Delete Book
-					</Button>
+					<DeleteBookDialog bookName={selectedBook.name} onDelete={handleDeleteBook} />
 				</div>
 
 				<!-- Book Details -->
