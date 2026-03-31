@@ -5,9 +5,12 @@
 
 	let { books = [], isHydrated = false } = $props();
 
-	let scrollContainer: HTMLDivElement;
+	let scrollContainer: HTMLButtonElement;
 	let showRightFade = $state(true);
 	let showLeftFade = $state(false);
+	let isDragging = $state(false);
+	let dragStartX = 0;
+	let scrollLeftStart = 0;
 
 	function handleScroll() {
 		if (!scrollContainer) return;
@@ -18,13 +21,51 @@
 
 		showLeftFade = scrollLeft > 10;
 	}
+
+	function handleMouseDown(e: MouseEvent) {
+		isDragging = true;
+		dragStartX = e.clientX;
+		scrollLeftStart = scrollContainer.scrollLeft;
+	}
+
+	function handleMouseMove(e: MouseEvent) {
+		if (!isDragging) return;
+
+		const dragDistance = e.clientX - dragStartX;
+		scrollContainer.scrollLeft = scrollLeftStart - dragDistance;
+	}
+
+	function handleMouseUp() {
+		isDragging = false;
+	}
+
+	function handleKeyDown(e: KeyboardEvent) {
+		const scrollAmount = 100;
+		
+		if (e.key === "ArrowLeft") {
+			e.preventDefault();
+			scrollContainer.scrollLeft -= scrollAmount;
+		} else if (e.key === "ArrowRight") {
+			e.preventDefault();
+			scrollContainer.scrollLeft += scrollAmount;
+		}
+	}
 </script>
 
 <div class="relative">
-	<div
-		class="overflow-x-auto scrollbar-hide py-3 sm:py-4"
+	<button
+		type="button"
+		class="overflow-x-auto scrollbar-hide py-3 sm:py-4 w-full text-left bg-transparent border-none p-0"
+		class:cursor-grabbing={isDragging}
+		class:cursor-grab={!isDragging}
+		aria-label="Scrollable books carousel"
 		bind:this={scrollContainer}
 		onscroll={handleScroll}
+		onmousedown={handleMouseDown}
+		onmousemove={handleMouseMove}
+		onmouseup={handleMouseUp}
+		onmouseleave={handleMouseUp}
+		onkeydown={handleKeyDown}
 	>
 		<div class="flex flex-row gap-3 sm:gap-4 md:gap-6">
 			{#if isHydrated && books.length > 0}
@@ -55,7 +96,7 @@
 				{/each}
 			{/if}
 		</div>
-	</div>
+	</button>
 
 	{#if showLeftFade}
 		<div
