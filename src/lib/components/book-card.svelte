@@ -5,7 +5,7 @@
 	let { image = "", author = "", name = "" } = $props();
 </script>
 
-<a href={`/book/${slugify(name)}`} class="cursor-pointer flex flex-col items-center px-5 py-2 w-48" draggable="false">
+<a href={`/book/${slugify(name)}`} class="cursor-pointer flex flex-col items-center px-5 py-2 w-full" draggable="false">
 	<ThreeDBook {image} {name} hoverEffect />
 
 	<!-- Product Info -->
