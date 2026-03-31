@@ -26,9 +26,14 @@
 		onscroll={handleScroll}
 	>
 		<div class="flex flex-row gap-3 sm:gap-4 md:gap-6">
-			{#each books as book}
+			{#each books as book, index}
 				<div class="shrink-0">
-					<BookCard image={book.image} author={book.author} name={book.name} />
+					<BookCard
+						image={book.image}
+						author={book.author}
+						name={book.name}
+						{index}
+					/>
 				</div>
 			{/each}
 		</div>
