@@ -2,6 +2,7 @@
     import type { PageProps } from "./$types";
     import BookCard from "$lib/components/book-card.svelte";
     import * as Empty from "$lib/components/ui/empty/index.js";
+    import SearchBooks from "$lib/components/search-books.svelte";
     import { BookOpenIcon } from "phosphor-svelte";
     import { books } from "$lib/stores";
     import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
@@ -9,13 +10,23 @@
 
     let { data }: PageProps = $props();
 
-    let allBooks = $derived($books);
+    let searchQuery = $state("");
+    let allBooks = $derived.by(() => {
+        const filtered = $books.filter(
+            (book) =>
+                book.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                book.author.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        return filtered;
+    });
     let isHydrated = $state(false);
 
     onMount(() => {
         isHydrated = true;
     });
 </script>
+
+<SearchBooks bind:value={searchQuery} />
 
 {#if !isHydrated}
     <div
