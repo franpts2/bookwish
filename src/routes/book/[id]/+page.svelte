@@ -6,6 +6,9 @@
 	import ThreeDBook from "$lib/components/3d-book.svelte";
 	import DeleteBookDialog from "$lib/components/delete-book-dialog.svelte";
 	import { Skeleton } from "$lib/components/ui/skeleton/index.js";
+	import * as Empty from "$lib/components/ui/empty";
+	import * as Button from "$lib/components/ui/button";
+	import { BookIcon } from "phosphor-svelte";
 
 	let isHydrated = $state(false);
 
@@ -98,8 +101,23 @@
 				</div>
 			</div>
 		{:else}
-			<div class="text-center py-12">
-				<p class="text-muted-foreground">Book not found</p>
+			<div class="flex flex-col items-center justify-center min-h-96">
+				<Empty.Root class="border-0">
+					<Empty.Header>
+						<Empty.Media variant="icon">
+							<BookIcon weight="duotone" size={40} />
+						</Empty.Media>
+						<Empty.Title>Book Not Found</Empty.Title>
+						<Empty.Description>
+							The book you're looking for doesn't exist. It might have been removed or the URL could be incorrect.
+						</Empty.Description>
+					</Empty.Header>
+
+					<Empty.Content class="flex-row gap-3 items-center justify-center">
+						<Button.Root href="/">Back to Home</Button.Root>
+						<Button.Root variant="outline" href="/all">Browse All Books</Button.Root>
+					</Empty.Content>
+				</Empty.Root>
 			</div>
 		{/if}
 	</div>
