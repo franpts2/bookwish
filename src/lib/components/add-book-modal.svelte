@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Input } from "$lib/components/ui/input";
-	import { MagnifyingGlassIcon } from "phosphor-svelte";
+	import { MagnifyingGlassIcon, SpinnerIcon } from "phosphor-svelte";
 	import { books } from "$lib/stores";
 	import type { SearchResult } from "$lib/books";
 	import SearchResultItem from "$lib/components/search-result-item.svelte";
@@ -122,9 +122,7 @@
 					class="text-muted-foreground absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center pointer-events-none"
 				>
 					{#if isLoading}
-						<div class="animate-spin">
-							<MagnifyingGlassIcon size={20} weight="light" />
-						</div>
+						<SpinnerIcon size={20} class="animate-spin" weight="light" />
 					{:else}
 						<MagnifyingGlassIcon size={20} weight="light" />
 					{/if}
@@ -158,7 +156,7 @@
 					</p>
 				{:else}
 					<p class="p-4 text-center text-sm text-muted-foreground">
-						Type at least 3 characters to search
+						Start typing to search
 					</p>
 				{/if}
 			</div>
