@@ -92,7 +92,6 @@
 							image={book.image}
 							author={book.author}
 							name={book.name}
-							{index}
 						/>
 					</div>
 				{/each}

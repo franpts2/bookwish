@@ -21,5 +21,5 @@
 			Recently Added
 		</h1>
 	</div>
-	<BookCardList books={$books} {isHydrated} />
+	<BookCardList books={[...$books].reverse()} {isHydrated} />
 </div>

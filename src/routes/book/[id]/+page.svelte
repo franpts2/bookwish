@@ -2,6 +2,7 @@
 	import { page } from "$app/stores";
 	import { books } from "$lib/stores";
 	import { goto } from "$app/navigation";
+	import { slugify } from "$lib/utils";
 	import ThreeDBook from "$lib/components/3d-book.svelte";
 	import DeleteBookDialog from "$lib/components/delete-book-dialog.svelte";
 	import { Skeleton } from "$lib/components/ui/skeleton/index.js";
@@ -10,13 +11,13 @@
 
 	let selectedBook = $derived.by(() => {
 		if (!$page.params.id) return undefined;
-		const id = parseInt($page.params.id);
+		const slug = $page.params.id;
 		let currentBooks: any[] = [];
 		const unsubscribe = books.subscribe((b) => {
 			currentBooks = b;
 		});
 		unsubscribe();
-		return currentBooks[id];
+		return currentBooks.find((book) => slugify(book.name) === slug);
 	});
 
 	$effect(() => {
@@ -26,9 +27,8 @@
 	});
 
 	const handleDeleteBook = () => {
-		if ($page.params.id === undefined) return;
-		const id = parseInt($page.params.id);
-		books.removeBook(id);
+		if (!selectedBook) return;
+		books.removeBook(selectedBook.name);
 		goto("/");
 	};
 </script>

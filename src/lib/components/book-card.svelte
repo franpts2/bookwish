@@ -1,10 +1,11 @@
 <script lang="ts">
 	import ThreeDBook from "./3d-book.svelte";
+	import { slugify } from "$lib/utils";
 
-	let { image = "", author = "", name = "", index = 0 } = $props();
+	let { image = "", author = "", name = "" } = $props();
 </script>
 
-<a href={`/book/${index}`} class="cursor-pointer flex flex-col items-center px-5 py-2 w-48" draggable="false">
+<a href={`/book/${slugify(name)}`} class="cursor-pointer flex flex-col items-center px-5 py-2 w-48" draggable="false">
 	<ThreeDBook {image} {name} hoverEffect />
 
 	<!-- Product Info -->

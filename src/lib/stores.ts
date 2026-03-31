@@ -17,9 +17,9 @@ function createBooksStore() {
 				return newBooks;
 			});
 		},
-		removeBook: (index: number) => {
+		removeBook: (bookName: string) => {
 			update((books) => {
-				const newBooks = books.filter((_, i) => i !== index);
+				const newBooks = books.filter((b) => b.name !== bookName);
 				if (typeof window !== 'undefined') {
 					localStorage.setItem('books', JSON.stringify(newBooks));
 				}
