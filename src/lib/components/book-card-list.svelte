@@ -2,7 +2,7 @@
 	import BookCard from "./book-card.svelte";
 	import { fade } from "svelte/transition";
 
-	let { books = [] } = $props();
+	let { books = [], isHydrated = false } = $props();
 
 	let scrollContainer: HTMLDivElement;
 	let showRightFade = $state(true);
@@ -26,16 +26,31 @@
 		onscroll={handleScroll}
 	>
 		<div class="flex flex-row gap-3 sm:gap-4 md:gap-6">
-			{#each books as book, index}
-				<div class="shrink-0">
-					<BookCard
-						image={book.image}
-						author={book.author}
-						name={book.name}
-						{index}
-					/>
-				</div>
-			{/each}
+			{#if isHydrated && books.length > 0}
+				{#each books as book, index}
+					<div class="shrink-0" transition:fade={{ duration: 200 }}>
+						<BookCard
+							image={book.image}
+							author={book.author}
+							name={book.name}
+							{index}
+						/>
+					</div>
+				{/each}
+			{:else}
+				<!-- Skeleton loaders -->
+				{#each Array(4) as _, i}
+					<div class="shrink-0">
+						<div class="cursor-pointer flex flex-col items-center px-5 py-2">
+							<div class="mb-4 w-40 h-60 bg-muted rounded-lg animate-pulse"></div>
+							<div class="space-y-1 text-center">
+								<div class="h-4 bg-muted rounded animate-pulse w-32"></div>
+								<div class="h-3 bg-muted rounded animate-pulse w-24 mx-auto mt-1"></div>
+							</div>
+						</div>
+					</div>
+				{/each}
+			{/if}
 		</div>
 	</div>
 
