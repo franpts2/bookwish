@@ -44,14 +44,21 @@
     </div>
 {:else if allBooks.length === 0}
     <Empty.Root>
-        <Empty.Media>
+        <Empty.Media variant="icon">
             <BookOpenIcon size={48} class="text-muted-foreground" />
         </Empty.Media>
         <Empty.Header>
-            <Empty.Title>No books yet</Empty.Title>
-            <Empty.Description
-                >Start adding books to your collection to see them here.</Empty.Description
-            >
+            {#if searchQuery}
+                <Empty.Title>No results found</Empty.Title>
+                <Empty.Description
+                    >Try adjusting your search terms to find books.</Empty.Description
+                >
+            {:else}
+                <Empty.Title>No books yet</Empty.Title>
+                <Empty.Description
+                    >Start adding books to your collection to see them here.</Empty.Description
+                >
+            {/if}
         </Empty.Header>
     </Empty.Root>
 {:else}
@@ -64,6 +71,7 @@
                     image={book.image}
                     author={book.author}
                     name={book.name}
+                    searchQuery={searchQuery}
                 />
             </div>
         {/each}
