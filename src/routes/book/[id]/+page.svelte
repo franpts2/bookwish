@@ -60,16 +60,20 @@
 						</p>
 					</div>
 
-					{#if selectedBook.description}
-						<div class="space-y-2">
-							<h2 class="text-xl font-semibold">Description</h2>
+					<div class="space-y-2">
+						<h2 class="text-xl font-semibold">Description</h2>
+						{#if selectedBook.description}
 							<p
 								class="text-base text-muted-foreground leading-relaxed"
 							>
 								{selectedBook.description}
 							</p>
-						</div>
-					{/if}
+						{:else}
+							<p class="text-base text-muted-foreground leading-relaxed">
+								This book doesn't have a description
+							</p>
+						{/if}
+					</div>
 				</div>
 			</div>
 		{:else if $page.params.id && !isHydrated}
