@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
 	import AddBookModal from "./add-book-modal.svelte";
-	import ThemeSwitcher from "./theme-switcher.svelte";
+	import SettingsMenu from "./settings-menu.svelte";
 	import { BookIcon, PlusIcon } from "phosphor-svelte";
 
 	let modalOpen = false;
@@ -36,7 +36,7 @@
 			</nav>
 		</div>
 		<div class="flex items-center gap-4">
-			<ThemeSwitcher />
+			<SettingsMenu />
 			<Button onclick={() => (modalOpen = true)}>
 				<PlusIcon size={20} weight="bold" />
 				Add Book
