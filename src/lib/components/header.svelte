@@ -13,7 +13,7 @@
 	];
 </script>
 
-<header class="bg-background px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8">
+<header class="fixed top-0 left-0 right-0 z-50 bg-background p-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8">
 	<div class="flex flex-row justify-between items-center">
 		<div class="flex items-center gap-2 sm:gap-4 md:gap-8">
 			<a
