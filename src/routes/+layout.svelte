@@ -4,6 +4,7 @@
 	import Header from "$lib/components/header.svelte";
 
 	let { children } = $props();
+
 </script>
 
 <svelte:head>

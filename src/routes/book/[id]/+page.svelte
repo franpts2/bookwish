@@ -4,6 +4,9 @@
 	import { goto } from "$app/navigation";
 	import ThreeDBook from "$lib/components/3d-book.svelte";
 	import DeleteBookDialog from "$lib/components/delete-book-dialog.svelte";
+	import { Skeleton } from "$lib/components/ui/skeleton/index.js";
+
+	let isHydrated = $state(false);
 
 	let selectedBook = $derived.by(() => {
 		if (!$page.params.id) return undefined;
@@ -14,6 +17,12 @@
 		});
 		unsubscribe();
 		return currentBooks[id];
+	});
+
+	$effect(() => {
+		books.subscribe((b) => {
+			isHydrated = true;
+		});
 	});
 
 	const handleDeleteBook = () => {
@@ -61,6 +70,27 @@
 							</p>
 						</div>
 					{/if}
+				</div>
+			</div>
+		{:else if $page.params.id && !isHydrated}
+			<!-- Loading skeleton -->
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+				<!-- Book Cover Skeleton -->
+				<div class="flex flex-col justify-center items-center gap-4">
+					<Skeleton class="w-48 h-72 rounded-lg" />
+					<Skeleton class="w-32 h-10 rounded-md" />
+				</div>
+
+				<!-- Book Details Skeleton -->
+				<div class="lg:col-span-2 space-y-6">
+					<div class="space-y-2">
+						<Skeleton class="h-10 w-3/4" />
+						<Skeleton class="h-6 w-1/2" />
+					</div>
+					<div class="space-y-2">
+						<Skeleton class="h-6 w-1/4" />
+						<Skeleton class="h-20 w-full" />
+					</div>
 				</div>
 			</div>
 		{:else}
