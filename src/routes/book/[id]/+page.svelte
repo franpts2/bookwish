@@ -4,11 +4,12 @@
 	import { goto } from "$app/navigation";
 	import { slugify } from "$lib/utils";
 	import ThreeDBook from "$lib/components/3d-book.svelte";
-	import DeleteBookDialog from "$lib/components/delete-book-dialog.svelte";
+	import DeleteBookDialog from "$lib/components/dialogs/delete-book-dialog.svelte";
 	import { Skeleton } from "$lib/components/ui/skeleton/index.js";
 	import * as Empty from "$lib/components/ui/empty";
 	import * as Button from "$lib/components/ui/button";
 	import { BookIcon } from "phosphor-svelte";
+    import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
 
 	let isHydrated = $state(false);
 
@@ -77,6 +78,8 @@
 							</p>
 						{/if}
 					</div>
+
+					<AddNoteDialog bookName={selectedBook.name} />
 				</div>
 			</div>
 		{:else if $page.params.id && !isHydrated}
