@@ -18,7 +18,7 @@
 		"Found a new treasure to track?",
 	];
 
-	let randomHeadline = "";
+	let randomHeadline = $state("");
 	let isLoaded = $state(false);
 
 	onMount(() => {
