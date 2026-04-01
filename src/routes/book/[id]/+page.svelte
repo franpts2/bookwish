@@ -12,22 +12,20 @@
     import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
 
 	let isHydrated = $state(false);
+	let currentBooks = $state<any[]>([]);
+
+	$effect(() => {
+		const unsubscribe = books.subscribe((b) => {
+			currentBooks = b;
+			isHydrated = true;
+		});
+		return unsubscribe;
+	});
 
 	let selectedBook = $derived.by(() => {
 		if (!$page.params.id) return undefined;
 		const slug = $page.params.id;
-		let currentBooks: any[] = [];
-		const unsubscribe = books.subscribe((b) => {
-			currentBooks = b;
-		});
-		unsubscribe();
 		return currentBooks.find((book) => slugify(book.name) === slug);
-	});
-
-	$effect(() => {
-		books.subscribe((b) => {
-			isHydrated = true;
-		});
 	});
 
 	const handleDeleteBook = () => {
@@ -48,6 +46,7 @@
 						name={selectedBook.name}
 						large
 					/>
+					<AddNoteDialog bookName={selectedBook.name} />
 					<DeleteBookDialog bookName={selectedBook.name} onDelete={handleDeleteBook} />
 				</div>
 
@@ -79,7 +78,18 @@
 						{/if}
 					</div>
 
-					<AddNoteDialog bookName={selectedBook.name} />
+					{#if selectedBook.notes && selectedBook.notes.length > 0}
+						<div class="space-y-2">
+							<h2 class="text-xl font-semibold">Notes</h2>
+							<div class="space-y-2">
+								{#each selectedBook.notes as note}
+									<p class="text-base text-muted-foreground leading-relaxed bg-muted p-3 rounded">
+										{note}
+									</p>
+								{/each}
+							</div>
+						</div>
+					{/if}
 				</div>
 			</div>
 		{:else if $page.params.id && !isHydrated}

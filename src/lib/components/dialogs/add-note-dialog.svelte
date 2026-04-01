@@ -1,10 +1,28 @@
 <script lang="ts">
 	import * as Dialog from "$lib/components/ui/dialog/index.js";
+	import * as Button from "$lib/components/ui/button";
+    import { Input } from "$lib/components/ui/input";
+	import { books } from "$lib/stores";
 
 	let { open = $bindable(false), bookName }: {
 		open?: boolean;
 		bookName: string;
 	} = $props();
+
+	let noteText = $state("");
+
+	const handleSubmit = () => {
+		if (noteText.trim()) {
+			books.addNote(bookName, noteText);
+			noteText = "";
+			open = false;
+		}
+	};
+
+	const handleCancel = () => {
+		noteText = "";
+		open = false;
+	};
 </script>
 
 <Dialog.Root bind:open>
@@ -16,12 +34,20 @@
 	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>Add your note</Dialog.Title>
-			<Dialog.Description>
-                Hi there!
-            </Dialog.Description>
 		</Dialog.Header>
+		<div class="py-4">
+			<Input
+				placeholder="Enter your note..."
+				bind:value={noteText}
+			/>
+		</div>
 		<Dialog.Footer>
-            
+			<Button.Root variant="outline" onclick={handleCancel}>
+				Cancel
+			</Button.Root>
+			<Button.Root onclick={handleSubmit}>
+				Submit
+			</Button.Root>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>
