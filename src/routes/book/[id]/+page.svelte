@@ -9,8 +9,9 @@
 	import * as Empty from "$lib/components/ui/empty";
 	import * as Button from "$lib/components/ui/button";
 	import { BookIcon } from "phosphor-svelte";
-    import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
-
+	import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
+	import NoteMenu from "$lib/components/note-menu.svelte";
+	
 	let isHydrated = $state(false);
 	let currentBooks = $state<any[]>([]);
 
@@ -32,6 +33,14 @@
 		if (!selectedBook) return;
 		books.removeBook(selectedBook.name);
 		goto("/");
+	};
+
+	const handleEditNote = (index: number) => {
+		// TODO: Implement edit note functionality
+	};
+
+	const handleDeleteNote = (index: number) => {
+		// TODO: Implement delete note functionality
 	};
 </script>
 
@@ -82,10 +91,13 @@
 						<div class="space-y-2">
 							<h2 class="text-xl font-semibold">Notes</h2>
 							<div class="space-y-2">
-								{#each selectedBook.notes as note}
-									<p class="text-base text-muted-foreground leading-relaxed bg-muted p-3 rounded">
-										{note}
-									</p>
+								{#each selectedBook.notes as note, index}
+									<div class="flex items-start justify-between bg-muted p-3 rounded gap-2">
+										<p class="text-base text-muted-foreground leading-relaxed flex-1">
+											{note}
+										</p>
+										<NoteMenu noteIndex={index} onEdit={handleEditNote} onDelete={handleDeleteNote} />
+									</div>
 								{/each}
 							</div>
 						</div>
