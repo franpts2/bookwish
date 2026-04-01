@@ -10,6 +10,7 @@
 	import * as Button from "$lib/components/ui/button";
 	import { BookIcon } from "phosphor-svelte";
 	import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
+	import EditNoteDialog from "$lib/components/dialogs/edit-note-dialog.svelte";
 	import NoteMenu from "$lib/components/note-menu.svelte";
 	
 	let isHydrated = $state(false);
@@ -35,8 +36,12 @@
 		goto("/");
 	};
 
+	let editingNoteIndex: number | null = $state(null);
+	let editingNoteOpen = $state(false);
+
 	const handleEditNote = (index: number) => {
-		// TODO: Implement edit note functionality
+		editingNoteIndex = index;
+		editingNoteOpen = true;
 	};
 
 	const handleDeleteNote = (index: number) => {
@@ -56,6 +61,12 @@
 						large
 					/>
 					<AddNoteDialog bookName={selectedBook.name} />
+					<EditNoteDialog 
+						bind:open={editingNoteOpen}
+						bookName={selectedBook.name} 
+						noteIndex={editingNoteIndex}
+						noteText={editingNoteIndex !== null ? (selectedBook.notes?.[editingNoteIndex] || "") : ""}
+					/>
 					<DeleteBookDialog bookName={selectedBook.name} onDelete={handleDeleteBook} />
 				</div>
 
