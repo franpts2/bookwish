@@ -11,6 +11,7 @@
 	import { BookIcon } from "phosphor-svelte";
 	import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
 	import EditNoteDialog from "$lib/components/dialogs/edit-note-dialog.svelte";
+	import DeleteNoteDialog from "$lib/components/dialogs/delete-note-dialog.svelte";
 	import NoteMenu from "$lib/components/note-menu.svelte";
 	
 	let isHydrated = $state(false);
@@ -44,8 +45,20 @@
 		editingNoteOpen = true;
 	};
 
-	const handleDeleteNote = (index: number) => {
-		// TODO: Implement delete note functionality
+	let deletingNoteIndex: number | null = $state(null);
+	let deleteNoteOpen = $state(false);
+
+	const handleDeleteNoteClick = (index: number) => {
+		deletingNoteIndex = index;
+		deleteNoteOpen = true;
+	};
+
+	const handleDeleteNote = () => {
+		if (deletingNoteIndex !== null && selectedBook) {
+			books.deleteNote(selectedBook.name, deletingNoteIndex);
+			deletingNoteIndex = null;
+			deleteNoteOpen = false;
+		}
 	};
 </script>
 
@@ -66,6 +79,10 @@
 						bookName={selectedBook.name} 
 						noteIndex={editingNoteIndex}
 						noteText={editingNoteIndex !== null ? (selectedBook.notes?.[editingNoteIndex] || "") : ""}
+					/>
+					<DeleteNoteDialog 
+						bind:open={deleteNoteOpen}
+						onDelete={handleDeleteNote}
 					/>
 					<DeleteBookDialog bookName={selectedBook.name} onDelete={handleDeleteBook} />
 				</div>
@@ -107,7 +124,7 @@
 										<p class="text-base text-muted-foreground leading-relaxed flex-1">
 											{note}
 										</p>
-										<NoteMenu noteIndex={index} onEdit={handleEditNote} onDelete={handleDeleteNote} />
+										<NoteMenu noteIndex={index} onEdit={handleEditNote} onDelete={handleDeleteNoteClick} />
 									</div>
 								{/each}
 							</div>

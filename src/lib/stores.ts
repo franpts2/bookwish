@@ -55,6 +55,22 @@ function createBooksStore() {
 				return newBooks;
 			});
 		},
+		deleteNote: (bookName: string, noteIndex: number) => {
+			update((books) => {
+				const newBooks = books.map((b) =>
+					b.name === bookName
+						? { 
+							...b, 
+							notes: (b.notes || []).filter((_, i) => i !== noteIndex)
+						}
+						: b
+				);
+				if (typeof window !== 'undefined') {
+					localStorage.setItem('books', JSON.stringify(newBooks));
+				}
+				return newBooks;
+			});
+		},
 	};
 }
 
