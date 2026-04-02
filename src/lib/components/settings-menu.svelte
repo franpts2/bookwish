@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { GearIcon } from "phosphor-svelte";
-	import { Button } from "$lib/components/ui/button";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 	import { themeStore, type Theme, themePresets } from "$lib/theme/themeStore";
 	import { themes as themeColors } from "$lib/theme/themesData";
@@ -21,10 +20,10 @@
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger class="p-0">
-		<Button variant="ghost" size="icon">
-			<GearIcon size={30} />
-		</Button>
+	<DropdownMenu.Trigger
+		class="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-md transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 size-9"
+	>
+		<GearIcon size={20} />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
 		<DropdownMenu.Sub>
