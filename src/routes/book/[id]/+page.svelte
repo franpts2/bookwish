@@ -12,7 +12,7 @@
 	import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
 	import EditNoteDialog from "$lib/components/dialogs/edit-note-dialog.svelte";
 	import DeleteNoteDialog from "$lib/components/dialogs/delete-note-dialog.svelte";
-	import NoteMenu from "$lib/components/note-menu.svelte";
+	import PostItNote from "$lib/components/post-it-note.svelte";
 	
 	let isHydrated = $state(false);
 	let currentBooks = $state<any[]>([]);
@@ -116,16 +116,11 @@
 					</div>
 
 					{#if selectedBook.notes && selectedBook.notes.length > 0}
-						<div class="space-y-2">
+						<div class="space-y-6">
 							<h2 class="text-xl font-semibold">Notes</h2>
-							<div class="space-y-2">
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 								{#each selectedBook.notes as note, index}
-									<div class="flex items-start justify-between bg-muted p-3 rounded gap-2">
-										<p class="text-base text-muted-foreground leading-relaxed flex-1">
-											{note}
-										</p>
-										<NoteMenu noteIndex={index} onEdit={handleEditNote} onDelete={handleDeleteNoteClick} />
-									</div>
+									<PostItNote text={note} noteIndex={index} onEdit={handleEditNote} onDelete={handleDeleteNoteClick} />
 								{/each}
 							</div>
 						</div>
