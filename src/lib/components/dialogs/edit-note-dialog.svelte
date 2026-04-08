@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Dialog from "$lib/components/ui/dialog/index.js";
 	import * as Button from "$lib/components/ui/button";
-	import { Input } from "$lib/components/ui/input";
+	import { Textarea } from "$lib/components/ui/textarea";
 	import { books } from "$lib/stores";
 
 	let { open = $bindable(false), bookName, noteIndex, noteText: initialNoteText }: {
@@ -39,7 +39,7 @@
 			<Dialog.Title>Edit your note</Dialog.Title>
 		</Dialog.Header>
 		<div class="py-4">
-			<Input
+			<Textarea
 				placeholder="Enter your note..."
 				bind:value={noteText}
 			/>
