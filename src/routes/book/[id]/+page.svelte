@@ -4,29 +4,31 @@
 	import { goto } from "$app/navigation";
 	import { slugify } from "$lib/utils";
 	import ThreeDBook from "$lib/components/3d-book.svelte";
-	import DeleteBookDialog from "$lib/components/delete-book-dialog.svelte";
+	import DeleteBookDialog from "$lib/components/dialogs/delete-book-dialog.svelte";
 	import { Skeleton } from "$lib/components/ui/skeleton/index.js";
 	import * as Empty from "$lib/components/ui/empty";
 	import * as Button from "$lib/components/ui/button";
 	import { BookIcon } from "phosphor-svelte";
-
+	import AddNoteDialog from "$lib/components/dialogs/add-note-dialog.svelte";
+	import EditNoteDialog from "$lib/components/dialogs/edit-note-dialog.svelte";
+	import DeleteNoteDialog from "$lib/components/dialogs/delete-note-dialog.svelte";
+	import PostItNote from "$lib/components/post-it-note.svelte";
+	
 	let isHydrated = $state(false);
+	let currentBooks = $state<any[]>([]);
+
+	$effect(() => {
+		const unsubscribe = books.subscribe((b) => {
+			currentBooks = b;
+			isHydrated = true;
+		});
+		return unsubscribe;
+	});
 
 	let selectedBook = $derived.by(() => {
 		if (!$page.params.id) return undefined;
 		const slug = $page.params.id;
-		let currentBooks: any[] = [];
-		const unsubscribe = books.subscribe((b) => {
-			currentBooks = b;
-		});
-		unsubscribe();
 		return currentBooks.find((book) => slugify(book.name) === slug);
-	});
-
-	$effect(() => {
-		books.subscribe((b) => {
-			isHydrated = true;
-		});
 	});
 
 	const handleDeleteBook = () => {
@@ -34,18 +36,53 @@
 		books.removeBook(selectedBook.name);
 		goto("/");
 	};
+
+	let editingNoteIndex: number | null = $state(null);
+	let editingNoteOpen = $state(false);
+
+	const handleEditNote = (index: number) => {
+		editingNoteIndex = index;
+		editingNoteOpen = true;
+	};
+
+	let deletingNoteIndex: number | null = $state(null);
+	let deleteNoteOpen = $state(false);
+
+	const handleDeleteNoteClick = (index: number) => {
+		deletingNoteIndex = index;
+		deleteNoteOpen = true;
+	};
+
+	const handleDeleteNote = () => {
+		if (deletingNoteIndex !== null && selectedBook) {
+			books.deleteNote(selectedBook.name, deletingNoteIndex);
+			deletingNoteIndex = null;
+			deleteNoteOpen = false;
+		}
+	};
 </script>
 
 <div class="py-8">
 	<div class="px-6 sm:px-8 lg:px-12">
 		{#if selectedBook}
-			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
 				<!-- Book Cover & Actions -->
 				<div class="flex flex-col justify-center items-center gap-4">
 					<ThreeDBook
 						image={selectedBook.image}
 						name={selectedBook.name}
 						large
+					/>
+					<AddNoteDialog bookName={selectedBook.name} />
+					<EditNoteDialog 
+						bind:open={editingNoteOpen}
+						bookName={selectedBook.name} 
+						noteIndex={editingNoteIndex}
+						noteText={editingNoteIndex !== null ? (selectedBook.notes?.[editingNoteIndex] || "") : ""}
+					/>
+					<DeleteNoteDialog 
+						bind:open={deleteNoteOpen}
+						onDelete={handleDeleteNote}
 					/>
 					<DeleteBookDialog bookName={selectedBook.name} onDelete={handleDeleteBook} />
 				</div>
@@ -77,6 +114,17 @@
 							</p>
 						{/if}
 					</div>
+
+					{#if selectedBook.notes && selectedBook.notes.length > 0}
+						<div class="space-y-6">
+							<h2 class="text-xl font-semibold">Notes</h2>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								{#each selectedBook.notes as note, index}
+									<PostItNote text={note} noteIndex={index} onEdit={handleEditNote} onDelete={handleDeleteNoteClick} />
+								{/each}
+							</div>
+						</div>
+					{/if}
 				</div>
 			</div>
 		{:else if $page.params.id && !isHydrated}

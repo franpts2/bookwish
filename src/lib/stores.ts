@@ -26,6 +26,51 @@ function createBooksStore() {
 				return newBooks;
 			});
 		},
+		addNote: (bookName: string, note: string) => {
+			update((books) => {
+				const newBooks = books.map((b) =>
+					b.name === bookName
+						? { ...b, notes: [...(b.notes || []), note] }
+						: b
+				);
+				if (typeof window !== 'undefined') {
+					localStorage.setItem('books', JSON.stringify(newBooks));
+				}
+				return newBooks;
+			});
+		},
+		editNote: (bookName: string, noteIndex: number, updatedNote: string) => {
+			update((books) => {
+				const newBooks = books.map((b) =>
+					b.name === bookName
+						? { 
+							...b, 
+							notes: (b.notes || []).map((note, i) => i === noteIndex ? updatedNote : note)
+						}
+						: b
+				);
+				if (typeof window !== 'undefined') {
+					localStorage.setItem('books', JSON.stringify(newBooks));
+				}
+				return newBooks;
+			});
+		},
+		deleteNote: (bookName: string, noteIndex: number) => {
+			update((books) => {
+				const newBooks = books.map((b) =>
+					b.name === bookName
+						? { 
+							...b, 
+							notes: (b.notes || []).filter((_, i) => i !== noteIndex)
+						}
+						: b
+				);
+				if (typeof window !== 'undefined') {
+					localStorage.setItem('books', JSON.stringify(newBooks));
+				}
+				return newBooks;
+			});
+		},
 	};
 }
 

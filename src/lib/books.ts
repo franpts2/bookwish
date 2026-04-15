@@ -12,6 +12,7 @@ export interface Book {
   author: string;
   image: string;
   description?: string;
+  notes?: string[];
 }
 
 export async function searchBooks(query: string) {
