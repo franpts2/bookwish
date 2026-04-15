@@ -65,7 +65,7 @@
 <div class="py-8">
 	<div class="px-6 sm:px-8 lg:px-12">
 		{#if selectedBook}
-			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
 				<!-- Book Cover & Actions -->
 				<div class="flex flex-col justify-center items-center gap-4">
 					<ThreeDBook
